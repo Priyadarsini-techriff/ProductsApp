@@ -1,0 +1,45 @@
+<app-product-nav-bar></app-product-nav-bar>
+<div class="container" style="max-width: 50%; ">
+    <p class="message-p">{{productMessage}}</p>
+    <div class="row mb-5">
+        <form class="row g-3" [formGroup]="editProduct" (ngSubmit)="UpdateProduct()">
+            <div class="col-md-6 form-group">
+                <label for="inputName" class="form-label">Product Name</label>
+                <input type="text" formControlName="productName" class="form-control" id="inputName">
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="inputPrice" class="form-label">Price</label>
+                <input type="number" formControlName="price" class="form-control" id="inputPrice">
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="inputRating" class="form-label">Rating</label>
+                <input type="number" formControlName="rating" class="form-control" id="inputRating">
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="inputReleaseDate" class="form-label">ReleaseDate</label>
+                <input type="datetime-local" formControlName="releaseDate" class="form-control" id="inputReleaseDate">
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="inputDescription" class="form-label">Description</label>
+                <textarea name="desc" class="form-control" formControlName="description" id="inputDescription"
+                    placeholder="type here..."></textarea>
+                <!-- <input type="text" class="form-control" formControlName="address" id="inputAddress" placeholder="1234 Main St"> -->
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="Image" class="form-label">Image</label>
+                <img src="" alt="">
+                <input type="text" class="form-control" id="image" formControlName="imageUrl">
+            </div>
+            <!-- <button type="submit" class="btn btn-primary btn-just-icon btn-lg" (click)="Update(formValue)">
+                Save
+            </button> -->
+            
+                <button type="submit" class="btn btn-primary btn-just-icon btn-lg" (click)="showSuccess()">
+                    Save
+                </button>
+          
+        </form>
+
+    </div>
+
+</div>

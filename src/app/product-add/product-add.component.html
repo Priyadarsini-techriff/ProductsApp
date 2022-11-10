@@ -1,0 +1,61 @@
+<app-product-nav-bar></app-product-nav-bar>
+<div class="container" style="max-width: 50%; ">
+  <div class="row mb-5">
+    <form class="row g-3" [formGroup]="formValue">
+      <div class="col-md-12">
+        <label for="inputName" class="form-label">Product Name</label>
+        <input type="text" formControlName="productName" class="form-control" id="inputName" required>
+        <div *ngIf="productName && productName.invalid && (productName.dirty || productName.touched)"
+          class="alert alert-danger">
+          Name is required.
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="inputPrice" class="form-label">Price</label>
+        <input type="number" formControlName="price" class="form-control" id="inputPrice" required>
+      </div>
+      <div class="form-text text-danger" *ngIf="price&& price.errors?.['required']&&(price.touched|| price.dirty)">
+        *Price missing
+      </div>
+      <div class="col-md-12">
+        <label for="inputRating" class="form-label">Rating</label>
+        <input type="number" formControlName="rating" class="form-control" id="inputRating" min="1" max="5" required>
+      </div>
+      <div class="form-text text-danger" *ngIf="rating&& rating.errors?.['required']&&(rating.touched|| rating.dirty)">
+        *Please Provide Rating
+      </div>
+      <!-- <span *ngIf="rating && rating.invalid">Rating should be 1 to 5</span> -->
+      <div class="col-md-12">
+        <label for="inputReleaseDate" class="form-label">ReleaseDate</label>
+        <input type="date" formControlName="releaseDate" class="form-control" id="inputReleaseDate" required>
+      </div>
+      <div class="col-md-12">
+        <label for="inputDescription" class="form-label">Description</label>
+        <textarea name="desc" class="form-control" formControlName="description" id="inputDescription"
+          placeholder="type here..." required></textarea>
+        <!-- <input type="text" class="form-control" formControlName="address" id="inputAddress" placeholder="1234 Main St"> -->
+      </div>
+      <div class="form-text text-danger"
+        *ngIf="description&& description.errors?.['required']&&(description.touched|| description.dirty)">
+        *Please Provide description for the product
+      </div>
+      <div class="form-text text-danger" *ngIf="description&& description.errors?.['required']&&(description.touched|| description.dirty)">
+        *Please Provide description...
+      </div>
+      <div class="col-md-12">
+        <label for="Image" class="form-label">Image</label>
+        <img src="" alt="">
+        <input type="text" class="form-control" id="image" formControlName="imageUrl" required>
+      </div>
+      <div class="form-text text-danger" *ngIf="imageUrl&& imageUrl.errors?.['required']&&(imageUrl.touched|| imageUrl.dirty)">
+        *Please Provide Image Url...
+      </div>
+      <button [disabled]="formValue.invalid" type="submit" class="btn btn-primary btn-just-icon btn-lg"
+        (click)="AddProduct()" (click)="showSuccess()">
+        AddProduct
+      </button>
+
+    </form>
+    <!--  -->
+  </div>
+</div>

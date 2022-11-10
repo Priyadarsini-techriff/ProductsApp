@@ -1,0 +1,57 @@
+
+<!-- nav -->
+<app-product-nav-bar></app-product-nav-bar>
+<!-- nav -->
+<h2>Product Details</h2>
+<div *ngIf="product !==undefined">
+  <div class="card mt-4 mb-3"style="max-width: 70rem;">
+    <div class="row g-0">
+      <div class="col-md-5">
+        <img src="{{product.imageUrl }}" class="img-fluid rounded-start" style="max-width: 30rem;" alt="...">
+        <div class="row mt-2 mb-3 ms-4">
+          <div class="col-md-6">
+            <a href="#" class="btn btn-primary btn-lg" type="submit">Add To Cart</a>
+          </div>
+          <div class="col-md-6">
+            <a href="#" class="btn btn-secondary btn-lg" type="submit">Buy Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="card-body ms-5 mb-5" >
+          <h5 class="card-title">{{product.productName|uppercase}}</h5>
+          <h4>Price:{{product.price|currency:'INR'}}</h4>
+          <p class="card-text">{{product.description}}</p>
+          <span class="text-warning">{{product.rating|number:'1.1-1'}}</span>
+          <div>Created Date:{{ product.createdDate|date:'d MMM, y, h:mm a' }}</div>
+          <div>Release Date:{{ product.releaseDate|date:'d MMM, y, h:mm a' }}</div>
+          <div>Last Update Date:{{ product.lastUpdatedDate|date:'d MMM, y, h:mm a' }}</div>
+          <div>IsActive:{{product.isActive}}</div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-outline-secondary">
+    <div class="card-header">Product Reviews</div>
+    <div class="card-body">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit commodi amet nesciunt odit, iusto, animi
+        laudantium
+        quos blanditiis eius recusandae optio et molestias porro atque illo minus dicta error rem!</p>
+      <small class="text-muted">Posted by swati on 5/1/16</small>
+      <hr>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit commodi amet nesciunt odit, iusto, animi
+        laudantium
+        quos blanditiis eius recusandae optio et molestias porro atque illo minus dicta error rem!</p>
+      <small class="text-muted">Posted by swati on 5/1/16</small>
+      <hr>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit commodi amet nesciunt odit, iusto, animi
+        laudantium
+        quos blanditiis eius recusandae optio et molestias porro atque illo minus dicta error rem!</p>
+      <small class="text-muted">Posted by swati on 5/1/16</small>
+      <hr>
+      <a href="#" class="btn btn-primary" type="submit">Leave a Review</a>
+    </div>
+  </div>
+</div>
