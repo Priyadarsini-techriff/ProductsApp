@@ -63,8 +63,10 @@ export class ProductListComponentComponent implements OnInit {
   loadMore() {
     this.pageNum += 1;
     this._userService.getProducts(this.pageNum).subscribe((res) => {
+      console.log(res);
       if (res.length != 0) {
         this.products = this.products.concat(res);
+        
       } else {
         this.display = false;
       }

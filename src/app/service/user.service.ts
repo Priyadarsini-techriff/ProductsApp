@@ -19,28 +19,13 @@ import { CommonModule } from '@angular/common';
 export class UserService {
   private _url: string = "http://www.dummyproducts.com/api/Products?rowsPerPage=10&pageNumber=1";
   api: string = "http://www.dummyproducts.com/api/Products/";
-  page2: string ='http://www.dummyproducts.com/api/Products?rowsPerPage=10&pageNumber=2';
-page1: string ='http://www.dummyproducts.com/api/Products?rowsPerPage=10&pageNumber=1';
-offset: number = 0;
-  requestArray: any = [];
   constructor(private http: HttpClient) { }
 
   //get allProducts
   getProducts(pageNumber: number): Observable<IProduct[]> {
     return this.http.get<IProduct[]>("http://www.dummyproducts.com/api/Products?rowsPerPage=10&pageNumber="+pageNumber);
   }
-  // getProduct(pageNumber: number) {
-  //   return this.http
-  //     .get(
-  //       'http://www.dummyproducts.com/api/Products?rowsPerPage=10&pageNumber=' +
-  //         pageNumber
-  //     )
-  //     .pipe(
-  //       map((res: any) => {
-  //         return res;
-  //       })
-  //     );
-  // }
+
   //delete
   deleteProduct(productId: number): Observable<IProduct[]> {
     return this.http.delete<IProduct[]>(this.api + productId);
