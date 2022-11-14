@@ -21,17 +21,17 @@
             <div>Last Update Date:{{ product.lastUpdatedDate|date:'d MMM, y, h:mm a' }}</div>
             <div>IsActive:{{product.isActive}}</div>
           </div>
-          <div *ngIf="product.isActive==true; else elseBlock"><a href="#" class="btn btn-primary btn-sm m-1"
-              (click)="onDeactiveProduct(product.productId,product.productName)" (click)="deActivateNotification()">Deactivate</a>
+          <div *ngIf="product.isActive==true; else elseBlock"><button href="#" class="btn btn-primary btn-sm m-1"
+              (click)="onDeactiveProduct(product.productId,product.productName)" >Deactivate</button>
           </div>
-          <ng-template #elseBlock> <a href="#" class="btn btn-primary btn-sm m-1"
-              (click)="onReactiveProduct(product.productId,product.productName)" (click)="activateNotification()">Activate</a>
+          <ng-template #elseBlock> <button href="#" class="btn btn-primary btn-sm m-1"
+              (click)="onReactiveProduct(product.productId,product.productName)" >Activate</button>
           </ng-template>
           <div class="mt-2">
             <a class="btn btn-primary  m-1" routerLink="/Products/{{product.productId}}/edit">
               Edit
             </a>
-            <a href="#" class="btn btn-danger  m-1" (click)="onDeleteProduct(product.productId,product.productName)" (click)="deleteNotification()">Delete</a>
+            <button href="#" class="btn btn-danger  m-1" (click)="onDeleteProduct(product.productId,product.productName)">Delete</button>
           </div>
 
         </div>

@@ -4,6 +4,7 @@ import { UserService } from '../service/user.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgConfirmService } from 'ng-confirm-box';
 
 @Component({
   selector: 'app-product-list-component',
@@ -16,9 +17,9 @@ export class ProductListComponentComponent implements OnInit {
   pageNum: number = 1;
   display: boolean = true;
   submitted = false;
-  totalProduct:any;
+  totalProduct: any;
 
-  constructor(private _userService: UserService, private toastr: ToastrService) { }
+  constructor(private _userService: UserService, private toastr: ToastrService, private confirmService: NgConfirmService) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -31,37 +32,52 @@ export class ProductListComponentComponent implements OnInit {
     });
   }
 
-  onDeleteProduct(productId: number, productName:string) {
-    if (confirm("Do you want to delete " + productName + "?")) 
-    {
+  onDeleteProduct(productId: number, productName: string) {
+    this.confirmService.showConfirm("Do you want to delete" + productName + "?", 
+    () => {
       this._userService.deleteProduct(productId).subscribe(
         (res) => {
           this.toastr.error(productName + 'has been deleted');
           this.loadData();
-          
-        });
-    }
-  }
 
-  onReactiveProduct(productId: number, productName:string) {
-    if (confirm("Do you want to Activate this "+productName+"?" )) {
-      this._userService.reactiveProduct(productId,productName).subscribe((result) => {
+        });
+    },
+      () => {
+        this.toastr.error("The error you get back from server");
+      }
+    )
+   
+  }
+  
+
+  onReactiveProduct(productId: number, productName: string) {
+    this.confirmService.showConfirm("Do you want to Activate this " + productName + "?",
+    ()=>{
+      this._userService.reactiveProduct(productId, productName).subscribe((result) => {
         this.toastr.success(productName + 'has been Activated');
         this.loadData();
       });
-    }
+    },
+    ()=>{
+      this.toastr.error("The error you get back from server");
+    })
   }
 
-  onDeactiveProduct(productId: number, productName:string) {
-    if (confirm("Do you want to deactivate this " + productName + "?")) {
-      this._userService.deactiveProduct(productId,  productName).subscribe(
+  onDeactiveProduct(productId: number, productName: string) {
+    this.confirmService.showConfirm("Do you want to Deactivate this " + productName + "?",
+    ()=>{
+      this._userService.deactiveProduct(productId, productName).subscribe(
         (result) => {
           console.log(result);
           this.toastr.error(productName + 'has been deactivated');
           this.loadData();
         });
-    }
+    },
+    ()=>{
+      this.toastr.error("The error you get back from server");
+    })
   }
+ 
 
   loadMore() {
     this.pageNum += 1;
@@ -69,7 +85,7 @@ export class ProductListComponentComponent implements OnInit {
       console.log(res.length);
       if (res.length != 0) {
         this.products = this.products.concat(res);
-        
+
       } else {
         this.display = false;
       }

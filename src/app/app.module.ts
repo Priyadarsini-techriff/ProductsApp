@@ -15,6 +15,7 @@ import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductNavBarComponent } from './product-nav-bar/product-nav-bar.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
+import {NgConfirmModule} from 'ng-confirm-box';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    NgConfirmModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
