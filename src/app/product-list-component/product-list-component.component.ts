@@ -36,8 +36,9 @@ export class ProductListComponentComponent implements OnInit {
     {
       this._userService.deleteProduct(productId).subscribe(
         (res) => {
+          this.toastr.error(productName + 'has been deleted');
           this.loadData();
-          console.log("result: ", res)
+          
         });
     }
   }
@@ -45,6 +46,7 @@ export class ProductListComponentComponent implements OnInit {
   onReactiveProduct(productId: number, productName:string) {
     if (confirm("Do you want to Activate this "+productName+"?" )) {
       this._userService.reactiveProduct(productId,productName).subscribe((result) => {
+        this.toastr.success(productName + 'has been Activated');
         this.loadData();
       });
     }
@@ -55,6 +57,7 @@ export class ProductListComponentComponent implements OnInit {
       this._userService.deactiveProduct(productId,  productName).subscribe(
         (result) => {
           console.log(result);
+          this.toastr.error(productName + 'has been deactivated');
           this.loadData();
         });
     }
@@ -63,7 +66,7 @@ export class ProductListComponentComponent implements OnInit {
   loadMore() {
     this.pageNum += 1;
     this._userService.getProducts(this.pageNum).subscribe((res) => {
-      console.log(res);
+      console.log(res.length);
       if (res.length != 0) {
         this.products = this.products.concat(res);
         
