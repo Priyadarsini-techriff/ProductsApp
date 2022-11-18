@@ -1,10 +1,54 @@
-<div>
-    <nav class="navbar bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand active" routerLink="/Products">Products</a>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/Products">ECommerece-WebSite</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div  *ngIf="!isLogIn()" class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul  class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/Products">Products</a>
+        </li>
+        </ul>
+
         <form class="d-flex" role="search">
-          <button class=" btn btn-outline-primary my-2 my-sm-0" type="submit" routerLink="/Products/new">New Product</button>
+          <a class=" btn btn-outline-primary my-2 my-sm-0" type="submit" [routerLink]="['/login']">Login</a>
         </form>
-      </div>
-    </nav>
     </div>
+    <div  *ngIf="isLogIn()" class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul  class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/Products">Products</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/Products/new">New Product</a>
+        </li>
+        </ul>
+
+        <form class="d-flex" role="search">
+          <a class=" btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="logOut()" >LogOut</a>
+        </form>
+    </div>
+  </div>
+  
+</nav>
+
+
+
+<!-- <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid" [ngSwitch]="menuType">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="#">ECommerece-WebSite</a>
+      </div>
+      <ul class="nav navbar-nav"  *ngSwitchCase="'default'" >
+        <li class="nav-item active"><a class="nav-link active" routerLink="/Products">Products</a></li>
+        <li class="nav-item"><a class="nav-link " routerLink="/login">Login/Sign-up</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngSwitchCase="'token'">
+        <li class="nav-item"><a class="nav-link active" routerLink="/Products">Products</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Products/new">New Product</a></li>
+        <li class="nav-item"><a class="nav-link" (click)="logOut()" >Logout</a></li>
+      </ul>
+    </div>
+  </nav> -->

@@ -1,0 +1,78 @@
+
+<div class=" container user-auth vh-100" style="width: 50%;">
+    <div *ngIf="!showLogin" class="sign-up row justify-content-center h-100">
+        <div class="card my-auto shadow">
+            <div class="card-body px-5">
+                <div class="text-center">
+                    <h1>User Signup</h1>
+                </div>
+                <p style="color: lightslategray; text-align: center;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please enter your Register
+                    details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <form [formGroup]="userSignUp" class="common-form" (ngSubmit)="signUp()">
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" name="name" placeholder="Enter FirstName"
+                            formControlName="firstName" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" name="name" placeholder="Enter LastName"
+                            formControlName="lastName" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="email" class="form-control" name="email" placeholder="Enter User Email"
+                            formControlName="email" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="password" class="form-control" name="password" placeholder="Enter User Password"
+                            formControlName="password" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="password" class="form-control" name="password" placeholder="Enter Confirm Password"
+                            formControlName="confirmPassword" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="submit" class="btn btn-primary w-100 mt-3" value="SignUp" name="">
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-right mt-3">
+                <p>Already Have Account ? <a (click)="openLogin()">Click Here</a></p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showLogin" class="login row justify-content-center h-100">
+        <div class="card my-auto shadow">
+            <div class="card-body px-5">
+                <div class="text-center">
+                    <h1>User Login</h1>
+                </div>
+                <p style="color: lightslategray; text-align: center;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please enter your login
+                    details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <form [formGroup]="userLogin" class="common-form" (ngSubmit)="login()">
+                    <p class="error-p">{{authError}}</p>
+                    <div class="form-group mt-3">
+                        <input type="email" class="form-control" name="emailAddress" placeholder="Enter User Email"
+                            formControlName="emailAddress" required />
+                        <p class="invalid-input"><span style="color: red;" *ngIf="emailAddress && emailAddress.invalid && emailAddress.touched ">Please enter valid
+                                input</span></p>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="password" class="form-control" name="password" placeholder="Enter User Password"
+                            formControlName="password" minlength="2" maxlength="20" required />
+                        <p class="invalid-input"><span  style="color: red;" *ngIf=" password && password.invalid && password.touched ">Please enter valid
+                                input</span>
+                        </p>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="submit" [disabled]="userLogin.invalid" class="btn btn-primary w-100 mt-3" value="Login" name="">
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-right mt-3">
+
+                <p>Want to Create Account ? <a (click)="openSignUp()">Click Here</a></p>
+            </div>
+        </div>
+    </div>
+</div>

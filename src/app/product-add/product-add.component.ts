@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule  } from '@angular/forms';
-import { IProduct } from '../Product';
+import { IProduct } from '../model/Product';
 import { UserService } from '../service/user.service';
 import {  RxReactiveFormsModule, RxwebValidators } from "@rxweb/reactive-form-validators";
 import {ToastrService} from "ngx-toastr";

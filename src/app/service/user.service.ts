@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
-import { IProduct } from '../Product';
+import { Injectable, Type } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
+import { IProduct } from '../model/Product';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ import { CommonModule } from '@angular/common';
 export class UserService {
   private _url: string = "http://www.dummyproducts.com/api/Products?rowsPerPage=10&pageNumber=1";
   api: string = "http://www.dummyproducts.com/api/Products/";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
+
 
   //get allProducts
   getProducts(pageNumber: number): Observable<IProduct[]> {
@@ -56,6 +58,6 @@ export class UserService {
   updateProduct(productId: number, product: any) {
     return this.http.put(this.api + productId, product);
   }
+ 
 
 }
-

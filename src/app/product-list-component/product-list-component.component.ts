@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IProduct } from '../Product';
+import { IProduct } from '../model/Product';
 import { UserService } from '../service/user.service';
 
 import { ToastrService } from 'ngx-toastr';

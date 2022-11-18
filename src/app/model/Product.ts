@@ -25,3 +25,5 @@ export class IProduct {
     lastUpdatedDate: string="";
  
 }
+
+

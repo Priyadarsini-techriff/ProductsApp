@@ -16,6 +16,10 @@ import { ProductNavBarComponent } from './product-nav-bar/product-nav-bar.compon
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import {NgConfirmModule} from 'ng-confirm-box';
+import { LoginComponent } from './login/login.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
 
 
 @NgModule({
@@ -26,7 +30,9 @@ import {NgConfirmModule} from 'ng-confirm-box';
     ProductAddComponent,
     ProductNavBarComponent,
     EditProductComponent,
-    PageNotFoundComponentComponent
+    PageNotFoundComponentComponent,
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,8 @@ import {NgConfirmModule} from 'ng-confirm-box';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    NgConfirmModule
+    NgConfirmModule,
+    FontAwesomeModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
