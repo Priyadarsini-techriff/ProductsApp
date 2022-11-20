@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,ReactiveFormsModule  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { IProduct } from '../model/Product';
 import { UserService } from '../service/user.service';
-import {  RxReactiveFormsModule, RxwebValidators } from "@rxweb/reactive-form-validators";
+import {RxwebValidators } from "@rxweb/reactive-form-validators";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -13,7 +13,6 @@ import {ToastrService} from "ngx-toastr";
 export class ProductAddComponent implements OnInit {
   formValue!: FormGroup; 
   btnSaveShow:boolean = true;
-  // products: IProduct[] = [];
   products: IProduct = new IProduct;
   constructor(private formBuilder:FormBuilder, private _userService: UserService,private toastr :ToastrService) { }
 

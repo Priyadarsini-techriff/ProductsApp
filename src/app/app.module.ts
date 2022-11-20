@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListComponentComponent } from './product-list-component/product-list-component.component';
 import { UserService } from './service/user.service';
 import { ToastrModule } from 'ngx-toastr';
-import {NgxPaginationModule} from 'ngx-pagination';
 import { ProductDetailsComponent } from './product-details/product-details.component'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -18,6 +17,7 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
 import {NgConfirmModule} from 'ng-confirm-box';
 import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 
@@ -39,14 +39,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
     NgConfirmModule,
-    FontAwesomeModule
+    FontAwesomeModule, BrowserAnimationsModule,
   ],
-  providers: [UserService],
+  providers: [UserService,
+  {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,
+  multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

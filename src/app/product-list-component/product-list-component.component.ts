@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IProduct } from '../model/Product';
 import { UserService } from '../service/user.service';
-
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgConfirmService } from 'ng-confirm-box';
 
 @Component({

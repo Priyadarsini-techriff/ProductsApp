@@ -12,14 +12,13 @@ export class AuthService {
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
-
   getToken(): string | null {
     return localStorage.getItem('token');
   }
   removeToken(){
     return localStorage.removeItem('token');
   }
-  isLoggedIn() {
+  isLoggedIn():boolean {
     return this.getToken() !== null;
   }
   addUsername(username:string){
@@ -28,9 +27,6 @@ export class AuthService {
   addRefreshToken(refToken:string){
     localStorage.setItem('refreshToken',refToken);
   }
-  //  isLoggedIn(): boolean {
-  //   return !!localStorage.getItem('token');
-  // }
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['login']);

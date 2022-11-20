@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthGuard } from '../guards/auth.guard';
-import { UserService } from '../service/user.service';
 import { user } from '../model/user';
 import { AuthService } from '../service/auth.service';
-import { ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,11 +24,11 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
     this.userSignUp = this.formBuilder.group({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      email: new FormControl(''),
-      password: new FormControl(''),
-      confirmPassword: new FormControl('')
+      firstName: new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z ]*')]),
+      lastName: new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z ]*')]),
+      email: new FormControl('',[Validators.required, Validators.email]),
+      password: new FormControl('',[Validators.required]),
+      confirmPassword: new FormControl('',[Validators.required])
     })
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['Products']);
@@ -43,22 +41,35 @@ export class LoginComponent implements OnInit {
   get password() {
     return this.userLogin.get('password');
   }
+  get email() {
+    return this.userSignUp.get('email');
+  }
+  get firstName() {
+    return this.userSignUp.get('firstName');
+  }
+  get confirmPassword() {
+    return this.userSignUp.get('confirmPassword');
+  }
+  get Password() {
+    return this.userSignUp.get('password');
+  }
+  get lastName() {
+    return this.userSignUp.get('lastName');
+  }
   login() {
     this.authService.removeToken();
     if (this.userLogin.valid) {
-      console.log(this.userLogin.value);
+      // console.log(this.userLogin.value);
       this.authService.login(this.userLogin.value).subscribe({
         next: (res) => {
           this.globalResponse = res;
-          // localStorage.setItem('user',JSON.stringify(res.body[0]));
-          // alert("login sucessfully");
           this.toastr.success("login sucessfully..");
           this.router.navigate(['Products']);
           this.authService.setToken(res.token);
           this.authService.addUsername(res.firstName);
          
         },
-        error: (err) => {
+        error: () => {
           this.toastr.error('InCorrect UserId Or Password. Register to continue....');
           this.router.navigate(['login']);
         }
