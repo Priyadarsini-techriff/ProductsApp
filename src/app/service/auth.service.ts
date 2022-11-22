@@ -7,7 +7,7 @@ import { login, user } from '../model/user';
   providedIn: 'root'
 })
 export class AuthService {
- 
+  base_api:string="http://www.dummyproducts.com/api";
   constructor(private http: HttpClient,private router: Router) {}
   setToken(token: string) {
     localStorage.setItem('token', token);
@@ -24,19 +24,22 @@ export class AuthService {
   addUsername(username:string){
     localStorage.setItem('username',username);
   }
-  addRefreshToken(refToken:string){
-    localStorage.setItem('refreshToken',refToken);
+  addEmail(email: string) {
+    localStorage.setItem('email', email);
+  }
+  addId(id: string) {
+    localStorage.setItem('id', id);
   }
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['login']);
   }
   login(data: login) {
-    return this.http.post<any>("http://www.dummyproducts.com/api"+"/token", data);
+    return this.http.post<any>(this.base_api+"/token", data);
   }
  
   RegisterUseer(data:user){
-    return this.http.post<any>("http://www.dummyproducts.com/api"+"/register", data);
+    return this.http.post<any>(this.base_api+"/register", data);
   }
 
 }

@@ -7,7 +7,7 @@
         <img src="{{ product.imageUrl }}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title productdata">
-            <a [title]="product.productName + ' details'"routerLink="/Products/{{product.productId}}/details">
+            <a [title]="product.productName + ' details'"routerLink="{{product.productId}}/details">
               {{ product.productName|uppercase}}
             </a>
           </h5>
@@ -28,7 +28,7 @@
               (click)="onReactiveProduct(product.productId,product.productName)" >Activate</button>
           </ng-template>
           <div class="mt-2">
-            <a class="btn btn-primary  m-1" routerLink="/Products/{{product.productId}}/edit">
+            <a class="btn btn-primary  m-1" routerLink="{{product.productId}}/edit">
               Edit
             </a>
             <button href="#" class="btn btn-danger  m-1" (click)="onDeleteProduct(product.productId,product.productName)">Delete</button>

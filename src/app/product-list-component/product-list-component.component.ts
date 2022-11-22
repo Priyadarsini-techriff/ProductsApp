@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../model/Product';
 import { UserService } from '../service/user.service';
 import { ToastrService } from 'ngx-toastr';
@@ -52,6 +52,7 @@ export class ProductListComponentComponent implements OnInit {
     this.confirmService.showConfirm("Do you want to Activate this " + productName + "?",
     ()=>{
       this._userService.reactiveProduct(productId, productName).subscribe((result) => {
+        console.log(result);
         this.toastr.success(productName + 'has been Activated');
         this.loadData();
       });

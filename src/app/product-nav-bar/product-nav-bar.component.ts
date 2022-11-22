@@ -10,7 +10,6 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./product-nav-bar.component.css']
 })
 export class ProductNavBarComponent implements OnInit {
-  menuType: string = 'default';
   userName: string = "";
 
   constructor(private route: Router,

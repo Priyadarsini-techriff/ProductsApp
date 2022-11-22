@@ -66,7 +66,9 @@ export class LoginComponent implements OnInit {
           this.toastr.success("login sucessfully..");
           this.router.navigate(['Products']);
           this.authService.setToken(res.token);
-          this.authService.addUsername(res.firstName);
+          this.authService.addUsername(res.firstName+" "+res.lastName);
+          // this.authService.addId(res.id);
+          this.authService.addEmail(res.emailAddress);
          
         },
         error: () => {
@@ -100,9 +102,5 @@ export class LoginComponent implements OnInit {
   openLogin() {
     this.showLogin = true;
   }
-
-
-
-
 
 }

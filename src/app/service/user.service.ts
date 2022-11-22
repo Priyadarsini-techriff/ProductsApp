@@ -29,8 +29,8 @@ export class UserService {
   //get allProducts
   getProducts(pageNumber: number): Observable<IProduct[]> {
    
-    // return this.http.get<IProduct[]>("http://www.dummyproducts.com/api/Products?rowsPerPage=10&pageNumber="+pageNumber);
-    return this.http.get<IProduct[]>(this.api+"?rowsPerPage=10&pageNumber="+pageNumber,{headers:this.httpHeaders});
+    return this.http.get<IProduct[]>("http://www.dummyproducts.com/api/Products?rowsPerPage=10&pageNumber="+pageNumber);
+    // return this.http.get<IProduct[]>(this.api+"?rowsPerPage=10&pageNumber="+pageNumber,{headers:this.httpHeaders});
   }
 
   //delete
@@ -57,9 +57,9 @@ export class UserService {
 
   //Get One
   getProductById(productId: number): Observable<IProduct> {
-    return this.http.get<IProduct>(this.api + productId);
+    return this.http.get<IProduct>(this.api + productId,{headers:this.httpHeaders});
   }
-
+//for edit
   updateProduct(productId: number, product: any) {
     return this.http.put(this.api + productId, product,{headers:this.httpHeaders});
   }

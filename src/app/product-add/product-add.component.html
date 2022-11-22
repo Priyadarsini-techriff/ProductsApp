@@ -33,7 +33,7 @@
         <label for="inputDescription" class="form-label">Description</label>
         <textarea name="desc" class="form-control" formControlName="description" id="inputDescription"
           placeholder="type here..." required></textarea>
-        <!-- <input type="text" class="form-control" formControlName="address" id="inputAddress" placeholder="1234 Main St"> -->
+       
       </div>
       <div class="form-text text-danger"
         *ngIf="description&& description.errors?.['required']&&(description.touched|| description.dirty)">
@@ -56,6 +56,5 @@
       </button>
 
     </form>
-    <!--  -->
   </div>
 </div>
